@@ -13,13 +13,13 @@ class LibraryPage extends StatelessWidget {
     return BlocBuilder<LibraryController, LibraryState>(
       bloc: getIt.get<LibraryController>(),
       builder: (context, state) {
-        if(state == LibraryState.loading){
+        if (state == LibraryState.loading) {
           return const Center(child: CircularProgressIndicator());
         }
         if (state == LibraryState.error) {
           return const Center(child: Text('Erro'));
         }
-          return const LibraryView();
+        return const LibraryView();
       },
     );
   }
