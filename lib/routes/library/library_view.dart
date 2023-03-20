@@ -1,3 +1,4 @@
+import 'package:biblioteca_adm/routes/shelf/shelf_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/controllers/library_controller.dart';
@@ -17,7 +18,7 @@ class LibraryView extends StatelessWidget {
       itemBuilder: (context, index) => ListTile(
         onTap: () {
           notifier.value = index;
-          getIt.get<PageController>().jumpToPage(2);
+          getIt.get<ValueNotifier<StatelessWidget>>().value = const ShelfPage();
         },
         title: Text(categories[index]),
       ),

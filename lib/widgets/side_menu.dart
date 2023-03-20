@@ -27,8 +27,18 @@ class SideMenu extends StatelessWidget {
         ),
         ListTile(
           onTap: () => pageController.jumpToPage(1),
-          leading: const Icon(Icons.menu_book),
+          leading: const Icon(Icons.import_contacts),
           title: const Text('Biblioteca'),
+        ),
+        ListTile(
+          onTap: () => pageController.jumpToPage(2),
+          leading: const Icon(Icons.add),
+          title: const Text('Cadastrar'),
+        ),
+        ListTile(
+          onTap: () => pageController.jumpToPage(3),
+          leading: const Icon(Icons.library_books),
+          title: const Text('Relatórios'),
         ),
       ],
     );

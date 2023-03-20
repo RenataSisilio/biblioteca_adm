@@ -1,3 +1,4 @@
+import 'package:biblioteca_adm/routes/end_page.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/side_menu.dart';
@@ -27,7 +28,7 @@ class _MainPageState extends State<MainPage> {
           VerticalDivider(),
           Expanded(
             flex: 2,
-            child: SizedBox.shrink(),
+            child: EndPage(),
           ),
         ],
       ),
