@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -7,21 +6,9 @@ import '../../models/book.dart';
 import 'library_repository.dart';
 
 class FirebaseLibraryRepository implements LibraryRepository {
-  late final FirebaseFirestore? firestore;
+  final FirebaseFirestore firestore;
 
-  FirebaseLibraryRepository();
-
-  init() {
-    try {
-      firestore = FirebaseFirestore.instance;
-    } catch (e) {
-      if (firestore == null) {
-        rethrow;
-      } else {
-        log('Firestore already initialized');
-      }
-    }
-  }
+  FirebaseLibraryRepository(this.firestore);
 
   @override
   Future<void> borrow(Book book, String user, DateTime date) async {
@@ -29,15 +16,15 @@ class FirebaseLibraryRepository implements LibraryRepository {
       final map =
           book.copyWith(status: Status.borrowed, lastUser: user).toMap();
       map.remove('id');
-      await firestore!.collection('books').doc(book.id).set(map);
-      await firestore!.collection('users').doc(user).collection('moves').add(
+      await firestore.collection('books').doc(book.id).set(map);
+      await firestore.collection('users').doc(user).collection('moves').add(
         {
           'status': Status.borrowed.name,
           'date': date.millisecondsSinceEpoch,
           'book': book.id,
         },
       );
-      firestore!.collection('users').doc(user).set({});
+      firestore.collection('users').doc(user).set({});
     } catch (e) {
       rethrow;
     }
@@ -47,7 +34,7 @@ class FirebaseLibraryRepository implements LibraryRepository {
   Future<List<Book>> getBooks() async {
     try {
       final snapshot =
-          await firestore!.collection('books').orderBy('title').get();
+          await firestore.collection('books').orderBy('title').get();
       final docs = snapshot.docs;
       final library = <Book>[];
       for (var doc in docs) {
@@ -66,9 +53,8 @@ class FirebaseLibraryRepository implements LibraryRepository {
     try {
       final map = book.copyWith(status: Status.available).toMap();
       map.remove('id');
-      await firestore!.collection('books').doc(book.id).set(map);
-      await firestore!
-          .collection('users')
+      await firestore.collection('books').doc(book.id).set(map);
+      await firestore.collection('users')
           .doc(book.lastUser)
           .collection('moves')
           .add(
@@ -91,7 +77,7 @@ class FirebaseLibraryRepository implements LibraryRepository {
   @override
   FutureOr<List<String>> getUsers() async {
     try {
-      final snapshot = await firestore!.collection('users').get();
+      final snapshot = await firestore.collection('users').get();
       return snapshot.docs.map((e) => e.id).toList();
     } catch (e) {
       rethrow;
