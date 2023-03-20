@@ -10,17 +10,20 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LibraryController, LibraryState>(
-      bloc: getIt.get<LibraryController>(),
-      builder: (context, state) {
-        if (state == LibraryState.loading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state == LibraryState.error) {
-          return const Center(child: Text('Erro'));
-        }
-        return const LibraryView();
-      },
+    return Scaffold(
+      appBar: AppBar(title: const Text('Biblioteca'),centerTitle: true,),
+      body: BlocBuilder<LibraryController, LibraryState>(
+        bloc: getIt.get<LibraryController>(),
+        builder: (context, state) {
+          if (state == LibraryState.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state == LibraryState.error) {
+            return const Center(child: Text('Erro'));
+          }
+          return const LibraryView();
+        },
+      ),
     );
   }
 }

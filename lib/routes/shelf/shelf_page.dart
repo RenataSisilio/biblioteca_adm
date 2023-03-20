@@ -21,6 +21,7 @@ class ShelfPage extends StatelessWidget {
           builder: (BuildContext context, value, Widget? child) =>
               Text(categories[value]),
         ),
+        centerTitle: true,
       ),
       body: BlocBuilder<LibraryController, LibraryState>(
         bloc: controller,

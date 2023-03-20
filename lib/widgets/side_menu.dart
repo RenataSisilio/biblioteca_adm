@@ -8,6 +8,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = getIt.get<PageController>();
+    final endPageController = getIt.get<ValueNotifier<StatelessWidget>>();
     return Column(
       children: [
         PreferredSize(
@@ -21,7 +22,10 @@ class SideMenu extends StatelessWidget {
           ),
         ),
         ListTile(
-          onTap: () => pageController.jumpToPage(0),
+          onTap: () {
+            pageController.jumpToPage(0);
+            endPageController.value = Container();
+          },
           leading: const Icon(Icons.search),
           title: const Text('Buscar'),
         ),
@@ -31,12 +35,18 @@ class SideMenu extends StatelessWidget {
           title: const Text('Biblioteca'),
         ),
         ListTile(
-          onTap: () => pageController.jumpToPage(2),
+          onTap: () {
+            pageController.jumpToPage(2);
+            endPageController.value = Container();
+          },
           leading: const Icon(Icons.add),
           title: const Text('Cadastrar'),
         ),
         ListTile(
-          onTap: () => pageController.jumpToPage(3),
+          onTap: () {
+            pageController.jumpToPage(3);
+            endPageController.value = Container();
+          },
           leading: const Icon(Icons.library_books),
           title: const Text('Relatórios'),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../get_it.dart';
-import 'home/home_page.dart';
+import 'search/search_page.dart';
 import 'library/library_page.dart';
 
 class CenterPage extends StatelessWidget {
@@ -15,10 +15,14 @@ class CenterPage extends StatelessWidget {
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
       children: const [
-        HomePage(),
+        SearchPage(),
         LibraryPage(),
-        Center(child: Text('Cadastrar'),),
-        Center(child: Text('Relatórios'),),
+        Center(
+          child: Text('Cadastrar'),
+        ),
+        Center(
+          child: Text('Relatórios'),
+        ),
       ],
     );
   }
