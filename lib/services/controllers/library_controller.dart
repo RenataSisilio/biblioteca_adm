@@ -68,4 +68,91 @@ class LibraryController extends Cubit<LibraryState> {
       emit(LibraryState.error);
     }
   }
+
+  Future<void> create(
+    String title,
+    String author,
+    String category,
+  ) async {
+    emit(LibraryState.saving);
+    try {
+      final double number;
+      final shelf = books.where((book) => book.category == category).toList();
+      if (shelf.any((book) => book.title == title && book.author == author)) {
+        shelf.retainWhere(
+            (book) => book.title == title && book.author == author);
+        shelf.sort((a, b) => a.number.compareTo(b.number));
+        number = shelf.last.number + 0.1;
+      } else {
+        shelf.sort((a, b) => a.number.compareTo(b.number));
+        number = shelf.last.number.floorToDouble() + 1.0;
+      }
+      final newBook = Book(
+        title: title,
+        author: author,
+        category: category,
+        number: number,
+        status: Status.available,
+      );
+      await repository.createBook(newBook);
+      books.add(newBook);
+      emit(LibraryState.success);
+    } catch (e) {
+      emit(LibraryState.error);
+    }
+  }
+
+  Future<void> delete(Book book) async {
+    emit(LibraryState.saving);
+    try {
+      await repository.deleteBook(book.id!);
+      books.removeWhere((e) => e.id == book.id);
+      emit(LibraryState.success);
+    } catch (e) {
+      emit(LibraryState.error);
+    }
+  }
+
+  Future<void> edit(
+    String id,
+    String title,
+    String author,
+    String category,
+  ) async {
+    emit(LibraryState.saving);
+    try {
+      final index = books.indexWhere((book) => book.id == id);
+      final Book edited;
+      if (category == books[index].category) {
+        edited = books[index].copyWith(
+          title: title,
+          author: author,
+          category: category,
+        );
+      } else {
+        final double number;
+        final shelf = books.where((book) => book.category == category).toList();
+        if (shelf.any((book) => book.title == title && book.author == author)) {
+          shelf.retainWhere(
+              (book) => book.title == title && book.author == author);
+          shelf.sort((a, b) => a.number.compareTo(b.number));
+          number = shelf.last.number + 0.1;
+        } else {
+          shelf.sort((a, b) => a.number.compareTo(b.number));
+          number = shelf.last.number + 1.0;
+        }
+        edited = books[index].copyWith(
+          title: title,
+          author: author,
+          category: category,
+          number: number,
+        );
+      }
+      await repository.editBook(edited);
+      books.replaceRange(index, index + 1, [edited]);
+      emit(LibraryState.success);
+    } catch (e) {
+      emit(LibraryState.error);
+    }
+  }
 }

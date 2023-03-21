@@ -17,12 +17,8 @@ class CenterPage extends StatelessWidget {
       children: const [
         SearchPage(),
         LibraryPage(),
-        Center(
-          child: Text('Cadastrar'),
-        ),
-        Center(
-          child: Text('Relatórios'),
-        ),
+        Center(child: Text('Relatórios')),
+        Center(child: Text('Histórico')),
       ],
     );
   }

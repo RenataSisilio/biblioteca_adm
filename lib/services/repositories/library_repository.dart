@@ -3,9 +3,11 @@ import 'dart:async';
 import '../../models/book.dart';
 
 abstract class LibraryRepository {
-  FutureOr<List<Book>> getBooks();
-  FutureOr<void> borrow(Book book, String user, DateTime date);
-  FutureOr<void> giveBack(Book book, DateTime date);
-  FutureOr<void> update(List<Book> list, LibraryRepository onlineRepo);
-  FutureOr<List<String>> getUsers();
+  Future<List<Book>> getBooks();
+  Future<void> borrow(Book book, String user, DateTime date);
+  Future<void> giveBack(Book book, DateTime date);
+  Future<List<String>> getUsers();
+  Future<void> createBook(Book book);
+  Future<void> editBook(Book book);
+  Future<void> deleteBook(String bookId);
 }

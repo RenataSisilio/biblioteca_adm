@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../get_it.dart';
+import 'book_info_dialog.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
@@ -21,6 +22,16 @@ class SideMenu extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 20),
+        FloatingActionButton.extended(
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => const BookInfoDialog(),
+          ),
+          icon: const Icon(Icons.add),
+          label: const Text('Cadastrar'),
+        ),
+        const SizedBox(height: 20),
         ListTile(
           onTap: () {
             pageController.jumpToPage(0);
@@ -39,16 +50,16 @@ class SideMenu extends StatelessWidget {
             pageController.jumpToPage(2);
             endPageController.value = Container();
           },
-          leading: const Icon(Icons.add),
-          title: const Text('Cadastrar'),
+          leading: const Icon(Icons.library_books),
+          title: const Text('Relatórios'),
         ),
         ListTile(
           onTap: () {
-            pageController.jumpToPage(3);
+            pageController.jumpToPage(2);
             endPageController.value = Container();
           },
-          leading: const Icon(Icons.library_books),
-          title: const Text('Relatórios'),
+          leading: const Icon(Icons.history),
+          title: const Text('Histórico'),
         ),
       ],
     );

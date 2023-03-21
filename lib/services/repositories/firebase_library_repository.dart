@@ -54,7 +54,8 @@ class FirebaseLibraryRepository implements LibraryRepository {
       final map = book.copyWith(status: Status.available).toMap();
       map.remove('id');
       await firestore.collection('books').doc(book.id).set(map);
-      await firestore.collection('users')
+      await firestore
+          .collection('users')
           .doc(book.lastUser)
           .collection('moves')
           .add(
@@ -70,15 +71,41 @@ class FirebaseLibraryRepository implements LibraryRepository {
   }
 
   @override
-  void update(List<Book> list, LibraryRepository onlineRepo) {
-    // unnecessary, it's already online
-  }
-
-  @override
-  FutureOr<List<String>> getUsers() async {
+  Future<List<String>> getUsers() async {
     try {
       final snapshot = await firestore.collection('users').get();
       return snapshot.docs.map((e) => e.id).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> createBook(Book book) async {
+    try {
+      final map = book.toMap();
+      map.remove('id');
+      await firestore.collection('books').add(map);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteBook(String bookId) async {
+    try {
+      await firestore.collection('books').doc(bookId).delete();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> editBook(Book book) async {
+    try {
+      final map = book.toMap();
+      map.remove('id');
+      await firestore.collection('books').doc(book.id).set(map);
     } catch (e) {
       rethrow;
     }
