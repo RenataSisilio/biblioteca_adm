@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../get_it.dart';
+import 'history/history_page.dart';
+import 'report/report_page.dart';
 import 'search/search_page.dart';
 import 'library/library_page.dart';
 
@@ -17,8 +19,8 @@ class CenterPage extends StatelessWidget {
       children: const [
         SearchPage(),
         LibraryPage(),
-        Center(child: Text('Relatórios')),
-        Center(child: Text('Histórico')),
+        ReportPage(),
+        HistoryPage(),
       ],
     );
   }

@@ -41,7 +41,10 @@ class SideMenu extends StatelessWidget {
           title: const Text('Buscar'),
         ),
         ListTile(
-          onTap: () => pageController.jumpToPage(1),
+          onTap: () {
+            pageController.jumpToPage(1);
+            endPageController.value = Container();
+          },
           leading: const Icon(Icons.import_contacts),
           title: const Text('Biblioteca'),
         ),
@@ -55,7 +58,7 @@ class SideMenu extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            pageController.jumpToPage(2);
+            pageController.jumpToPage(3);
             endPageController.value = Container();
           },
           leading: const Icon(Icons.history),

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../../models/book.dart';
+import '../../models/move.dart';
 
 abstract class LibraryRepository {
   Future<List<Book>> getBooks();
@@ -10,4 +11,5 @@ abstract class LibraryRepository {
   Future<void> createBook(Book book);
   Future<void> editBook(Book book);
   Future<void> deleteBook(String bookId);
+  Future<List<Move>> getMoves(String user);
 }

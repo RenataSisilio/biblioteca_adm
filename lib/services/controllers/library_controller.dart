@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/book.dart';
+import '../../models/move.dart';
 import '../repositories/library_repository.dart';
 
 enum LibraryState { loading, saving, success, error }
@@ -11,6 +12,7 @@ class LibraryController extends Cubit<LibraryState> {
   final LibraryRepository repository;
   late List<Book> books;
   late List<String> users;
+  late List<Move> history;
 
   Future<void> getBooks() async {
     emit(LibraryState.loading);
@@ -150,6 +152,16 @@ class LibraryController extends Cubit<LibraryState> {
       }
       await repository.editBook(edited);
       books.replaceRange(index, index + 1, [edited]);
+      emit(LibraryState.success);
+    } catch (e) {
+      emit(LibraryState.error);
+    }
+  }
+
+  Future<void> getHistory(String user) async {
+    emit(LibraryState.loading);
+    try {
+      history = await repository.getMoves(user);
       emit(LibraryState.success);
     } catch (e) {
       emit(LibraryState.error);

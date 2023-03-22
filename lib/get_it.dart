@@ -12,8 +12,8 @@ final getIt = GetIt.instance;
 
 Future<void> initializeDependencyInjection() async {
   await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   getIt.registerSingleton<FirebaseLibraryRepository>(
     FirebaseLibraryRepository(FirebaseFirestore.instance),
   );
@@ -22,7 +22,8 @@ Future<void> initializeDependencyInjection() async {
       getIt.get<FirebaseLibraryRepository>(),
     ),
   );
-  getIt.registerSingleton<ValueNotifier<int>>(ValueNotifier(0));
+  getIt.registerSingleton<ValueNotifier<int>>(ValueNotifier(0)); // cat. index
+  getIt.registerSingleton<ValueNotifier<String>>(ValueNotifier('')); // user
   getIt.registerSingleton<PageController>(PageController(initialPage: 1));
   getIt.registerSingleton<ValueNotifier<StatelessWidget>>(
       ValueNotifier(Container()));

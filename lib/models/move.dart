@@ -20,16 +20,17 @@ class Move {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'bookId': bookId,
+      'book': bookId,
       'user': user,
       'type': type.name,
       'date': date.millisecondsSinceEpoch,
     };
   }
+
   factory Move.fromMap(Map<String, dynamic> map) {
     return Move(
       id: map['id'] != null ? map['id'] as String : null,
-      bookId: map['bookId'] as String,
+      bookId: map['book'] as String,
       user: map['user'] as String,
       type: Status.values.firstWhere((e) => e.name == map['status']),
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
@@ -40,5 +41,4 @@ class Move {
 
   factory Move.fromJson(String source) =>
       Move.fromMap(json.decode(source) as Map<String, dynamic>);
-
 }

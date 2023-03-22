@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../models/book.dart';
+import '../../models/move.dart';
 import 'library_repository.dart';
 
 class FirebaseLibraryRepository implements LibraryRepository {
@@ -106,6 +107,27 @@ class FirebaseLibraryRepository implements LibraryRepository {
       final map = book.toMap();
       map.remove('id');
       await firestore.collection('books').doc(book.id).set(map);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Move>> getMoves(String user) async {
+    try {
+      final snapshot = await firestore
+          .collection('users')
+          .doc(user)
+          .collection('moves')
+          .get();
+      final docs = snapshot.docs;
+      final library = <Move>[];
+      for (var doc in docs) {
+        final data = doc.data();
+        data.addAll({'id': doc.id, 'user': user});
+        library.add(Move.fromMap(data));
+      }
+      return library;
     } catch (e) {
       rethrow;
     }
