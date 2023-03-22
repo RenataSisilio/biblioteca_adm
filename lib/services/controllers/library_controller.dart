@@ -157,14 +157,4 @@ class LibraryController extends Cubit<LibraryState> {
       emit(LibraryState.error);
     }
   }
-
-  Future<void> getHistory(String user) async {
-    emit(LibraryState.loading);
-    try {
-      history = await repository.getMoves(user);
-      emit(LibraryState.success);
-    } catch (e) {
-      emit(LibraryState.error);
-    }
-  }
 }
