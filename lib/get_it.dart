@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 import 'firebase_options.dart';
 import 'services/controllers/library_controller.dart';
+import 'services/controllers/shelf_controller.dart';
 import 'services/controllers/user_history_controller.dart';
 import 'services/repositories/firebase_library_repository.dart';
 
@@ -26,8 +27,9 @@ Future<void> initializeDependencyInjection() async {
   getIt.registerSingleton<ValueNotifier<String>>(ValueNotifier('')); // user
   getIt.registerSingleton<PageController>(PageController(initialPage: 1));
   getIt.registerSingleton<ValueNotifier<StatelessWidget>>(
-      ValueNotifier(Container()));
+      ValueNotifier(Container())); // end page
   getIt.registerSingleton<UserHistoryController>(UserHistoryController(
     getIt.get<FirebaseLibraryRepository>(),
   ));
+  getIt.registerSingleton<ShelfController>(ShelfController());
 }
