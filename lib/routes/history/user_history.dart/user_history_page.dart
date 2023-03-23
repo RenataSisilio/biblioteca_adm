@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../get_it.dart';
-import '../../services/controllers/user_history_controller.dart';
+import '../../../get_it.dart';
+import 'user_history_controller.dart';
 import 'user_history_view.dart';
 
 class UserHistoryPage extends StatelessWidget {

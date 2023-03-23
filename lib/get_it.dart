@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'firebase_options.dart';
-import 'services/controllers/library_controller.dart';
-import 'services/controllers/shelf_controller.dart';
-import 'services/controllers/user_history_controller.dart';
+import 'services/library_controller.dart';
+import 'routes/library/shelf/shelf_controller.dart';
+import 'routes/history/user_history.dart/user_history_controller.dart';
 import 'services/repositories/firebase_library_repository.dart';
 
 final getIt = GetIt.instance;

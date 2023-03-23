@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/book.dart';
-import '../../models/move.dart';
-import '../repositories/library_repository.dart';
+import '../models/book.dart';
+import '../models/move.dart';
+import 'repositories/library_repository.dart';
 
 enum LibraryState { loading, saving, success, error }
 

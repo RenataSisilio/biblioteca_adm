@@ -1,7 +1,7 @@
-import 'package:biblioteca_adm/routes/shelf/shelf_page.dart';
+import 'package:biblioteca_adm/routes/library/shelf/shelf_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/controllers/library_controller.dart';
+import '../../services/library_controller.dart';
 import '../../get_it.dart';
 
 class LibraryView extends StatelessWidget {

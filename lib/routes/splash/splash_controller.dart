@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../services/controllers/library_controller.dart';
+import '../../services/library_controller.dart';
 
 enum SplashState { loading, online, offline }
 

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../models/book.dart';
+import '../../../models/book.dart';
 
 enum ShelfState { loading, success, error }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../get_it.dart';
-import '../../services/controllers/library_controller.dart';
-import '../../services/controllers/user_history_controller.dart';
+import '../../../get_it.dart';
+import '../../../services/library_controller.dart';
+import 'user_history_controller.dart';
 
 class UserHistoryView extends StatelessWidget {
   const UserHistoryView({super.key});

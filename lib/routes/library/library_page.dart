@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../get_it.dart';
-import '../../services/controllers/library_controller.dart';
+import '../../services/library_controller.dart';
 import 'library_view.dart';
 
 class LibraryPage extends StatelessWidget {

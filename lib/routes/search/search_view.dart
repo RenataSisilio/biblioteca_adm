@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../get_it.dart';
 import '../../models/book.dart';
-import '../../services/controllers/library_controller.dart';
+import '../../services/library_controller.dart';
 import '../../widgets/book_info.dart';
 
 class HomeView extends StatelessWidget {

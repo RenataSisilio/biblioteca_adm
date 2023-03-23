@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../get_it.dart';
-import '../services/controllers/library_controller.dart';
+import '../services/library_controller.dart';
 
 class CategoryFormField extends StatelessWidget {
   const CategoryFormField(this.category, {super.key});

@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../get_it.dart';
 import '../models/book.dart';
-import '../services/controllers/library_controller.dart';
+import '../services/library_controller.dart';
 import 'date_picker_form_field.dart';
 import 'user_name_form_field.dart';
 
