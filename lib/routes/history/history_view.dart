@@ -10,17 +10,32 @@ class HistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = getIt.get<LibraryController>();
-    return ListView.builder(
-      itemCount: controller.users.length,
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          getIt.get<ValueNotifier<String>>().value = controller.users[index];
-          getIt.get<ValueNotifier<StatelessWidget>>().value =
-              const UserHistoryPage();
-        },
-        title: Text(controller.users[index]),
-        trailing: const Icon(Icons.chevron_right),
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: controller.users.length,
+            itemBuilder: (context, index) => ListTile(
+              onTap: () {
+                getIt.get<ValueNotifier<String>>().value =
+                    controller.users[index];
+                getIt.get<ValueNotifier<StatelessWidget>>().value =
+                    const UserHistoryPage();
+              },
+              title: Text(controller.users[index]),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: FloatingActionButton.extended(
+            onPressed: () {},
+            label: const Text('HISTÓRICO GERAL'), // selecionar período
+          ),
+        ),
+      ],
     );
   }
 }

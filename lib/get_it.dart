@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'firebase_options.dart';
-import 'services/library_controller.dart';
-import 'routes/library/shelf/shelf_controller.dart';
 import 'routes/history/user_history.dart/user_history_controller.dart';
+import 'routes/library/shelf/shelf_controller.dart';
+import 'routes/report/report_controller.dart';
+import 'services/library_controller.dart';
 import 'services/repositories/firebase_library_repository.dart';
 
 final getIt = GetIt.instance;
@@ -32,4 +33,10 @@ Future<void> initializeDependencyInjection() async {
     getIt.get<FirebaseLibraryRepository>(),
   ));
   getIt.registerSingleton<ShelfController>(ShelfController());
+}
+
+void registerReportController() {
+  getIt.registerSingleton<ReportController>(
+    ReportController(getIt.get<LibraryController>().books),
+  );
 }

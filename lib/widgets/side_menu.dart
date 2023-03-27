@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../get_it.dart';
+import '../routes/report/report_controller.dart';
+import '../routes/report/books_report/books_report_page.dart';
 import 'book_info_dialog.dart';
 
 class SideMenu extends StatelessWidget {
@@ -51,7 +53,12 @@ class SideMenu extends StatelessWidget {
         ListTile(
           onTap: () {
             pageController.jumpToPage(2);
-            endPageController.value = Container();
+            try {
+              getIt.get<ReportController>();
+            } catch (e) {
+              registerReportController();
+            }
+            endPageController.value = const BooksReportPage();
           },
           leading: const Icon(Icons.library_books),
           title: const Text('Relatórios'),

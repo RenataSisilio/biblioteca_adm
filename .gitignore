@@ -51,3 +51,7 @@ test/
 web/
 windows/
 lib/firebase_options.dart
+.firebase/hosting.cHVibGlj.cache
+public/
+.firebaserc
+firebase.json
