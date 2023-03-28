@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 
 import '../models/book.dart';
 
@@ -10,42 +10,65 @@ Future<Uint8List> makePdf(
     List<Book>? books,
     List<MapEntry<String, List<Book>>>? splitted}) async {
   assert((splitByCategory && splitted != null) || books != null);
-  final pdf = pw.Document();
+  final pdf = Document();
   pdf.addPage(
-    pw.MultiPage(
+    MultiPage(
       pageFormat: PdfPageFormat.a4,
+      maxPages: 100,
+      footer: (context) => SizedBox(
+        width: double.infinity,
+        child: Text(
+          'pág. ${context.pageNumber} / ${context.pagesCount}',
+          textAlign: TextAlign.right,
+        ),
+      ),
       build: (context) {
         if (splitByCategory) {
           splitted!.sort((a, b) => a.key.compareTo(b.key));
-          return [
-            pw.ListView.separated(
-              itemCount: splitted.length,
-              separatorBuilder: (_, __) => pw.Divider(
+          final result = <Widget>[];
+          for (var e in splitted) {
+            result.addAll(
+              [
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    e.key,
+                    style: Theme.of(context).header3,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(width: double.infinity, height: 20),
+              ],
+            );
+            for (var i = 0; i < e.value.length; i++) {
+              result.add(
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    BookRow(e.value[i]),
+                    i != e.value.length - 1 ? Divider() : SizedBox.shrink(),
+                  ],
+                ),
+              );
+            }
+            result.add(
+                // e == splitted.last ?
+                SizedBox(
+              width: double.infinity,
+              child: Divider(
                 height: 40,
                 thickness: 2,
               ),
-              itemBuilder: (_, index) => pw.Column(
-                mainAxisSize: pw.MainAxisSize.min,
-                children: [
-                  pw.Text(
-                    splitted[index].key,
-                    style: pw.Theme.of(context).header3,
-                  ),
-                  pw.SizedBox(height: 20),
-                  pw.ListView.separated(
-                    itemCount: splitted[index].value.length,
-                    separatorBuilder: (_, __) => pw.Divider(),
-                    itemBuilder: (_, i) => BookRow(splitted[index].value[i]),
-                  ),
-                ],
-              ),
-            ),
-          ];
+            )
+                // : SizedBox.shrink(),
+                );
+          }
+          return [Wrap(children: result)];
         } else {
           return [
-            pw.ListView.separated(
+            ListView.separated(
               itemCount: books!.length,
-              separatorBuilder: (_, __) => pw.Divider(),
+              separatorBuilder: (_, __) => Divider(),
               itemBuilder: (_, i) => BookRow(books[i]),
             ),
           ];
@@ -56,21 +79,21 @@ Future<Uint8List> makePdf(
   return pdf.save();
 }
 
-class BookRow extends pw.StatelessWidget {
+class BookRow extends StatelessWidget {
   BookRow(this.book);
 
   final Book book;
 
   @override
-  pw.Widget build(context) {
-    return pw.Row(
+  Widget build(context) {
+    return Row(
       children: [
-        pw.Expanded(child: pw.Text(book.numStr)),
-        pw.Expanded(flex: 10, child: pw.Text(book.title)),
-        pw.Expanded(flex: 5, child: pw.Text(book.author ?? '')),
-        pw.Expanded(
+        Expanded(child: Text(book.numStr)),
+        Expanded(flex: 10, child: Text(book.title)),
+        Expanded(flex: 5, child: Text(book.author ?? '')),
+        Expanded(
           flex: 4,
-          child: pw.Text(book.status == Status.borrowed
+          child: Text(book.status == Status.borrowed
               ? book.lastUser ?? ''
               : 'Disponível'),
         ),
