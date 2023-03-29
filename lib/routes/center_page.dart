@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../get_it.dart';
+import '../services/get_it.dart';
 import 'history/history_page.dart';
 import 'report/report_page.dart';
 import 'search/search_page.dart';

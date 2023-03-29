@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../get_it.dart';
+import '../services/get_it.dart';
 import '../models/book.dart';
 import '../services/library_controller.dart';
 import 'date_picker_form_field.dart';

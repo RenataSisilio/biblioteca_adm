@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:printing/printing.dart';
 
-import '../../../get_it.dart';
+import '../../../services/get_it.dart';
 import '../../../pdf/pdf_export.dart';
 import '../report_controller.dart';
 import 'books_report_view.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../get_it.dart';
+import '../../services/get_it.dart';
 import '../../models/book.dart';
 import '../../widgets/radio_group.dart';
 import 'report_controller.dart';

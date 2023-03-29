@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../get_it.dart';
+import '../services/get_it.dart';
 import '../models/book.dart';
 import '../services/library_controller.dart';
 import 'book_info_dialog.dart';

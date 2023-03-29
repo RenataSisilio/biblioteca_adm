@@ -2,7 +2,7 @@ import 'package:biblioteca_adm/routes/library/shelf/shelf_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/library_controller.dart';
-import '../../get_it.dart';
+import '../../services/get_it.dart';
 
 class LibraryView extends StatelessWidget {
   const LibraryView({super.key});

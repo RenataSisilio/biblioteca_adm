@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../get_it.dart';
+import '../../../services/get_it.dart';
 import '../../../widgets/book_row.dart';
 import '../report_controller.dart';
 

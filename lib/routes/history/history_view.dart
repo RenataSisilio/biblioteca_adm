@@ -1,7 +1,7 @@
 import 'package:biblioteca_adm/routes/history/user_history.dart/user_history_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../get_it.dart';
+import '../../services/get_it.dart';
 import '../../services/library_controller.dart';
 
 class HistoryView extends StatelessWidget {

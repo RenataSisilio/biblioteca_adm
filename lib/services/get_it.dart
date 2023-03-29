@@ -3,12 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import 'firebase_options.dart';
-import 'routes/history/user_history.dart/user_history_controller.dart';
-import 'routes/library/shelf/shelf_controller.dart';
-import 'routes/report/report_controller.dart';
-import 'services/library_controller.dart';
-import 'services/repositories/firebase_library_repository.dart';
+import '../firebase_options.dart';
+import '../routes/history/user_history.dart/user_history_controller.dart';
+import '../routes/library/shelf/shelf_controller.dart';
+import '../routes/report/report_controller.dart';
+import 'library_controller.dart';
+import 'repositories/firebase_library_repository.dart';
 
 final getIt = GetIt.instance;
 

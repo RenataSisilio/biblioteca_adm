@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../get_it.dart';
+import '../services/get_it.dart';
 
 class EndPage extends StatelessWidget {
   const EndPage({super.key});
