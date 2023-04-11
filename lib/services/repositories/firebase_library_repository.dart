@@ -132,4 +132,15 @@ class FirebaseLibraryRepository implements LibraryRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<String> bookTitle(String id) async {
+    try {
+      final snapshot = await firestore.collection('books').doc(id).get();
+      final data = snapshot.data();
+      return Book.fromMap(map: data!).title;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

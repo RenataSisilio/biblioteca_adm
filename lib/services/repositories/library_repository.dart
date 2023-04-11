@@ -12,4 +12,5 @@ abstract class LibraryRepository {
   Future<void> editBook(Book book);
   Future<void> deleteBook(String bookId);
   Future<List<Move>> getMoves(String user);
+  Future<String> bookTitle(String id);
 }

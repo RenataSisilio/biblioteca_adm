@@ -8,6 +8,7 @@ import '../routes/history/user_history.dart/user_history_controller.dart';
 import '../routes/library/shelf/shelf_controller.dart';
 import '../routes/report/report_controller.dart';
 import 'library_controller.dart';
+import 'notification_controller.dart';
 import 'repositories/firebase_library_repository.dart';
 
 final getIt = GetIt.instance;
@@ -33,6 +34,9 @@ Future<void> initializeDependencyInjection() async {
     getIt.get<FirebaseLibraryRepository>(),
   ));
   getIt.registerSingleton<ShelfController>(ShelfController());
+  getIt.registerSingleton<NotificationController>(NotificationController(
+    getIt.get<FirebaseLibraryRepository>(),
+  ));
 }
 
 void registerReportController() {
