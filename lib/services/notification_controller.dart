@@ -38,15 +38,15 @@ class NotificationController extends Cubit<NotificationState> {
         final threeMonths = DateTime.now().subtract(const Duration(days: 90));
         for (var i = 0; i < borrowed.length; i++) {
           if (borrowed[i].date.isBefore(threeMonths)) {
-            final subListIndex = returned.indexWhere(
-              (move) => move.date.isBefore(borrowed[i].date),
-            );
-            final subList = returned.sublist(
-              0,
-              subListIndex == -1 ? 0 : subListIndex,
-            );
+            // final subListIndex = returned.indexWhere(
+            //   (move) => move.date.isBefore(borrowed[i].date),
+            // );
+            // final subList = returned.sublist(
+            //   0,
+            //   subListIndex == -1 ? 0 : subListIndex,
+            // );
             final returnIndex =
-                subList.indexWhere((move) => move.bookId == borrowed[i].bookId);
+                returned.indexWhere((move) => move.bookId == borrowed[i].bookId);
             if (returnIndex == -1) {
               final bookName = await repository.bookTitle(borrowed[i].bookId);
               notification +=
